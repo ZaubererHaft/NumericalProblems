@@ -1,5 +1,5 @@
-#ifndef _AITKEN_
-#define _AITKEN_
+#ifndef _NEWTON_
+#define _NEWTON_
 
 #include "Interpolation.h"
 
@@ -8,7 +8,7 @@ using namespace std;
 
 namespace interpolation
 {
-    class Aitken : public Interpolation
+    class Newton : public Interpolation
     {
     public:
         using Interpolation::Interpolation;

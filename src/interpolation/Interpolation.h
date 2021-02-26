@@ -24,6 +24,7 @@ namespace interpolation
         {
             return this->y.size();
         }
+        virtual double interpolate(double curr_x) = 0;
 
     private:
         vector<double> &x;
