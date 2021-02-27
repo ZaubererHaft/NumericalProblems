@@ -25,7 +25,7 @@ void print(sle::SLE &equation)
     cout << "\n";
 }
 
-void execute(sle::IterativeSLESolver *solver, sle::SLE &equation)
+void execute(IterativeSLESolver *solver, SLE &equation)
 {
     solver->solve(equation);
     cout << "Solution:\n";
