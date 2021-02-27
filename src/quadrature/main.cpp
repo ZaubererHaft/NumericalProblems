@@ -1,4 +1,5 @@
 #include "Quadrature.h"
+#include "SimpsonSum.h"
 #include "TrapecoidalSum.h"
 
 #include <iostream>
@@ -11,19 +12,21 @@ using namespace quadrature;
 
 double function(double x)
 {
-    return -pow(x, 2) + 4;    //+ 4 * pow(x, 2) + 1;
+    return pow(x, 4);
 }
 
 int main(int argc, char *argv[])
 {
-    int    n = 8;
-    double a = -2;
-    double b = 2;
+    int variant = argc > 1 ? atoi(argv[1]) : 1;
+
+    int    n = 4;
+    double a = 0;
+    double b = 4;
     double h = (b - a) / n;
 
     vector<double> y(n + 1);
 
-    //init y with function values of equidistant x values
+    // init y with function values of equidistant x values
     for(int i = 0; i <= n; i++)
     {
         double x = a + i * h;
@@ -31,8 +34,20 @@ int main(int argc, char *argv[])
         cout << "x=" << x << " -> f(" << x << ")=" << y[i] << "\n";
     }
 
-    TrapecoidalSum sum { a, b, y };
-    double         val = sum.integrate();
+    double val = 0.0;
+    if(variant == 1)
+    {
+        cout << "integrate with trapecoidal\n";
+        TrapecoidalSum sum { a, b, y };
+        val = sum.integrate();
+    }
+    else
+    {
+        cout << "integrate with simpson\n";
+        SimpsonSum sum { a, b, y };
+        val = sum.integrate();
+    }
+
     cout << "Integration von a=" << a << " bis b=" << b << " mit n=" << n << " (-> Stützstellen 0,..," << n << ") ist " << val << "\n";
 
     return 0;
