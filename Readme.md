@@ -9,5 +9,6 @@ This repository contains a collection of implementations to common numerical pro
 * Ordinary Differential Equations: Not yet started
 * Quadrature: Quadrature with Simpson, Trapecoidal sum, and Romberg Extrapolation (experimental)
 * Systems of linear equations: At the time only iterative solvers; LR decomposition and Gauss scheduled
+* A german overview of all introduced algorithms (see explanation_de.pdf)
 
 ## License
