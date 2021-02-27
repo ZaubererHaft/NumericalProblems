@@ -11,7 +11,7 @@
 using namespace std;
 using namespace sle;
 
-void print(sle::SLE &equation)
+void print(SLE &equation)
 {
     for(int i = 0; i < equation.getSize(); i++)
     {
