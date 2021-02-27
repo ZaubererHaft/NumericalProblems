@@ -7,7 +7,7 @@ This repository contains a collection of implementations to common numerical pro
 * Eigenvalues: At the time only with power iteration, but already extended to compute all available eigenvalues; Note that A has to be a symmetric matrix
 * interpolation: Global interpolation with Aitken-Nevill and Newton; cubical splines on schedule
 * Ordinary Differential Equations: Not yet started
-* Quadrature: Quadrature with Simpson, Trapecoidal sum, and Romberg Extrapolation
+* Quadrature: Quadrature with Simpson, Trapecoidal sum, and Romberg Extrapolation (experimental)
 * Systems of linear equations: At the time only iterative solvers; LR decomposition and Gauss scheduled
 
 ## License
