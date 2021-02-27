@@ -33,6 +33,8 @@ namespace quadrature
             cout << "----\n";
         }
 
+        cout << "n=" << n << "\n";
+
         for(int k = 1; k <= n; k++)
         {
             for(int i = k; i < n; i++)
@@ -48,7 +50,7 @@ namespace quadrature
             }
         }
 
-        return Q[n][n];
+        return Q[n - 1][n - 1];
     }
 
 }    // namespace quadrature

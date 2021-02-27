@@ -53,8 +53,10 @@ int main(int argc, char *argv[])
     }
     else
     {
-        int max_y = (b - a);
-        int min_h = (b - a) / pow(2, n);
+        cout << "integrate with romberg\n";
+
+        double max_y = pow(2, n);
+        double min_h = (b - a) / pow(2, n);
 
         vector<double> y(max_y);
 
@@ -66,7 +68,6 @@ int main(int argc, char *argv[])
             cout << "x=" << x << " -> f(" << x << ")=" << y[i] << "\n";
         }
 
-        cout << "integrate with romberg\n";
         Romberg sum { a, b, y };
         val = sum.integrate();
     }
