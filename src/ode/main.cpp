@@ -1,4 +1,5 @@
 #include "ExplicitNewton.h"
+#include "Heun.h"
 #include "ODE.h"
 
 #include <iostream>
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
     int    iter    = 10;
 
     vector<double> y(iter);
-    ExplicitNewton newton { delta_t, y0, t0, y, difference_quotient, iter };
+    Heun           newton { delta_t, y0, t0, y, difference_quotient, iter };
     newton.solve();
 
     return 0;
