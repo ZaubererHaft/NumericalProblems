@@ -1,27 +1,29 @@
+#include "ExplicitNewton.h"
+#include "ODE.h"
+
 #include <iostream>
 #include <math.h>
 #include <stdlib.h>
 #include <vector>
 
 using namespace std;
+using namespace ode;
+
+double difference_quotient(double t, double y)
+{
+    return t * y;
+}
 
 int main(int argc, char *argv[])
 {
-    int    iter = argc > 0 ? atoi(argv[1]) : 10;
-    double y_0  = 1;
-    double y    = y_0;
-    double h    = argc > 1 ? atof(argv[2]) : 0.125;
+    double delta_t = 1;
+    double y0      = 1;
+    double t0      = 0;
+    int    iter    = 10;
 
-    for(int k = 0; k < iter; k++)
-    {
-        y = y * (1 - 4 * h + 8 * h * h);
-
-        double x = (k + 1) * h;
-        double analytic = exp(-4 * x);
-        cout << "x = " << x << " -> analytic = " << analytic << " approx = " << y << " error " << abs(analytic - y) << "\n";
-    }
-
-    cout << "problem mit y_0 = " << y_0 << " und h = " << h << " in " << iter << " Schritten: " << y << "\n";
+    vector<double> y(iter);
+    ExplicitNewton newton { delta_t, y0, t0, y, difference_quotient, iter };
+    newton.solve();
 
     return 0;
 }
