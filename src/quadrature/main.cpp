@@ -29,6 +29,13 @@ void initDefault(vector<double> &y, int n, double a, double h)
     }
 }
 
+void execute(Quadrature *quadrature)
+{
+    double val = quadrature->integrate();
+    cout << "Integration from a=" << quadrature->getA() << " to b=" << quadrature->getB() << " with n=" << quadrature->getN()
+         << " (-> max. nodes 0,..," << quadrature->getN() << ") with h=" << quadrature->getH() << " is " << val << "\n";
+}
+
 int main(int argc, char *argv[])
 {
     int variant = argc > 1 ? atoi(argv[1]) : 1;
@@ -38,8 +45,6 @@ int main(int argc, char *argv[])
     double b = 2;
     double h = (b - a) / n;
 
-    double val = 0.0;
-
     vector<double> y(n + 1);
     initDefault(y, n, a, h);
 
@@ -47,16 +52,16 @@ int main(int argc, char *argv[])
     {
         cout << "integrate with trapecoidal\n";
         TrapecoidalSum sum { a, b, y };
-        val = sum.integrate();
+        execute(&sum);
     }
     else if(variant == 2)
     {
-        cout << "integrate with archimedes\n";
+        cout << "integrate with archimedes; (total levels = n = " << n << ")\n";
         vector<double> y(0);
         Archimedes     sum { a, b, y, n, function };
-        val = sum.integrate();
+        execute(&sum);
     }
-    if(variant == 3)
+    else if(variant == 3)
     {
         double log2OfN = log(n) / log(2);
         if(round(log2OfN) - log2OfN >= 0.001)
@@ -64,9 +69,9 @@ int main(int argc, char *argv[])
             throw std::invalid_argument("romberg quadrature needs n that is power of 2");
         }
 
-        cout << "integrate with romberg\n";
+        cout << "integrate with romberg; 0,..,n is maximum count of points within a trapecoidal sum\n";
         Romberg sum { a, b, y };
-        val = sum.integrate();
+        execute(&sum);
     }
     else
     {
@@ -75,10 +80,8 @@ int main(int argc, char *argv[])
 
         cout << "integrate with simpson\n";
         SimpsonSum sum { a, b, y };
-        val = sum.integrate();
+        execute(&sum);
     }
-
-    cout << "Integration von a=" << a << " bis b=" << b << " mit n=" << n << " (-> Stützstellen 0,..," << n << ") ist " << val << "\n";
 
     return 0;
 }
