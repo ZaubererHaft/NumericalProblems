@@ -7,22 +7,21 @@ using namespace std;
 
 namespace quadrature
 {
-    double Archimedes::function(double x)
-    {
-        return -pow(x, 2) + 4;
-    }
-
     double Archimedes::integrate()
     {
-        double A = 0.5 * getB() * function(0);
+        double symm = (getB() + getA()) / 2.0;
+        double h    = func(symm);
+        double g    = getB() - symm;
+
+        double A = 0.5 * h * g;
         cout << "A on level 0: " << A << "\n";
-        return 2 * (A += doIntegrate(0, getB(), 1));
+        return 2 * (A += doIntegrate(symm, getB(), 1));
     }
 
     double Archimedes::doIntegrate(double a, double b, int cur)
     {
         double h = (b - a) / 2.0;
-        double g = function((b + a) / 2.0) - (function(a) + function(b)) / 2.0;
+        double g = func((b + a) / 2.0) - (func(a) + func(b)) / 2.0;
 
         double A = 2.0 * 0.5 * g * h;
         cout << "A on level " << cur << ": " << A << " with a=" << a << ", b=" << b << ", h=" << h << ", g=" << g << "\n";
@@ -37,10 +36,4 @@ namespace quadrature
             return A;
         }
     }
-
-    void Archimedes::setLevels(int levels)
-    {
-        this->levels = levels;
-    }
-
 }    // namespace quadrature

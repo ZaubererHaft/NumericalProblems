@@ -14,7 +14,7 @@ using namespace quadrature;
 
 double function(double x)
 {
-    return -pow(x, 2) + 4;
+    return -pow(x + 4, 2) + 1;
 }
 
 void initDefault(vector<double> &y, int n, double a, double h)
@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
     int variant = argc > 1 ? atoi(argv[1]) : 1;
 
     int    n = 2;
-    double a = -2;
-    double b = 2;
+    double a = -3;
+    double b = -5;
     double h = (b - a) / n;
 
     double val = 0.0;
@@ -74,8 +74,7 @@ int main(int argc, char *argv[])
         cout << "integrate with archimedes\n";
         vector<double> y(0);
         int            levels = 5;
-        Archimedes sum { a, b, y };
-        sum.setLevels(levels);
+        Archimedes sum { a, b, y, levels, function };
 
         val = sum.integrate();
     }
