@@ -13,11 +13,11 @@ namespace quadrature
     public:
         using Quadrature::Quadrature;
         double integrate() override;
-        void setLevels(int value);
+        void   setLevels(int value);
 
     private:
-        double doIntegrate(double i1, double, int cur);
-        int levels;
+        double doIntegrate(double a, double b, int cur);
+        int    levels;
 
         double function(double x);
     };

@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     {
         cout << "integrate with archimedes\n";
         vector<double> y(0);
-        int            levels = 4;
+        int            levels = 5;
         Archimedes sum { a, b, y };
         sum.setLevels(levels);
 
