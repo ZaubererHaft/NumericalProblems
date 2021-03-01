@@ -11,37 +11,47 @@ namespace quadrature
 {
     double Romberg::integrate()
     {
-        int                    n = getN();
-        vector<vector<double>> Q(n + 1, vector<double>(n + 1));
-        int                    step = n + 1;
+        int n = getN();
 
-        for(int i = 0; i < n; i++)
+        vector<vector<double>> Q(n, vector<double>(n));
+
+        //steps between points
+        int step = n;
+        // current amount of points
+        double p = 2;
+        // current index
+        int i = 0;
+
+        while(p <= n + 1)
         {
-            int p = pow(2, i) + 1;
             std::cout << "Trapecoidal Sum with " << p << " points\n";
             vector<double> y(p);
 
             // init y
             for(int j = 0; j < y.size(); j++)
             {
-                y[j]      = getY(j * step);
+                y[j] = getY(j * step);
                 cout << "  y[" << j << "] = " << y[j] << "\n";
             }
 
             TrapecoidalSum sum { getA(), getB(), y };
-            Q[i][0] = sum.integrate();
+            double         result = sum.integrate();
+            Q[i][0]               = result;
+
+            cout << "Q[" << i << "][0] = " << Q[i][0] << "\n";
+            cout << "----\n";
 
             step /= 2;
-
-            cout << "sum is " << Q[i][0] << "\n";
-            cout << "----\n";
+            p += p - 1;
+            i++;
         }
 
-        cout << "n=" << n << "\n";
+        //amount of trapecoidal rules
+        int iter = i - 1;
 
-        for(int k = 1; k <= n; k++)
+        for(int k = 1; k <= iter; k++)
         {
-            for(int i = k; i < n; i++)
+            for(int i = k; i <= iter; i++)
             {
                 double q = Q[i][k - 1] - Q[i - 1][k - 1];
                 double w = (getB() - getA()) / pow(2, i - k);
@@ -49,8 +59,9 @@ namespace quadrature
                 double r = ((w * w) / (e * e)) - 1;
 
                 double val = Q[i][k - 1] + (q / r);
-                cout << "Q[" << i << "][" << k << "] = " << val << "\n";
                 Q[i][k] = val;
+                cout << "Q[" << i << "][" << k << "] = " << val << "\n";
+
             }
         }
 
