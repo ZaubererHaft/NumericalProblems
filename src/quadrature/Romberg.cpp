@@ -13,22 +13,26 @@ namespace quadrature
     {
         int                    n = getN();
         vector<vector<double>> Q(n + 1, vector<double>(n + 1));
+        int                    step = pow(2, abs(getB() - getA()));
 
         for(int i = 0; i < n; i++)
         {
-            int    p = pow(2, i);
-            double h = (getB() - getA()) / p;
-            std::cout << "Trapecoidal Sum with 2^" << i << " = h = " << h << "\n";
-            vector<double> y(p + 1);
+            int p = pow(2, i) + 1;
+            std::cout << "Trapecoidal Sum with " << p << " points\n";
+            vector<double> y(p);
 
             // init y
             for(int j = 0; j < y.size(); j++)
             {
-                y[j] = getY(j * h);
+                y[j]      = getY(j * step);
+                cout << "  y[" << j << "] = " << y[j] << "\n";
             }
 
             TrapecoidalSum sum { getA(), getB(), y };
             Q[i][0] = sum.integrate();
+
+            step /= 2;
+
             cout << "sum is " << Q[i][0] << "\n";
             cout << "----\n";
         }
