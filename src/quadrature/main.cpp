@@ -14,7 +14,8 @@ using namespace quadrature;
 
 double function(double x)
 {
-    return -pow(x + 4, 2) + 1;
+    //return -pow(x + 4, 2) + 1;
+    return -pow(x, 2) + 4;
 }
 
 void initDefault(vector<double> &y, int n, double a, double h)
@@ -46,8 +47,8 @@ int main(int argc, char *argv[])
     int variant = argc > 1 ? atoi(argv[1]) : 1;
 
     int    n = 2;
-    double a = -3;
-    double b = -5;
+    double a = -2;
+    double b = 2;
     double h = (b - a) / n;
 
     double val = 0.0;

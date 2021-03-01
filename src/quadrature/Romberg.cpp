@@ -13,7 +13,7 @@ namespace quadrature
     {
         int                    n = getN();
         vector<vector<double>> Q(n + 1, vector<double>(n + 1));
-        int                    step = pow(2, abs(getB() - getA()));
+        int                    step = n + 1;
 
         for(int i = 0; i < n; i++)
         {
