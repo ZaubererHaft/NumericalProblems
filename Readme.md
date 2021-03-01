@@ -7,7 +7,7 @@ This repository contains a collection of implementations to common numerical pro
 * Eigenvalues: At the time only with power iteration, but already extended to compute all available eigenvalues; Note that A has to be a symmetric matrix
 * interpolation: Global interpolation with Aitken-Neville and Newton; cubical splines on schedule
 * Ordinary Differential Equations: Explicit Newton and Heun; Runge-Kutta and Adam-Bashforth scheduled
-* Quadrature: Quadrature with Simpson, Trapecoidal sum, Archimedes (only for quadratic functions), and Romberg Extrapolation (experimental)
+* Quadrature: Quadrature with Simpson, Trapecoidal sum, Archimedes (only for quadratic functions), and Romberg Extrapolation (should be fine now)
 * Systems of linear equations: At the time only iterative solvers; LR decomposition and Gauss scheduled
 * Roots: Bisection method; scheduled: Regula falsi, Secant, Newton
 * A German overview of all introduced algorithms (see explanation_de.pdf)

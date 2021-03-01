@@ -65,7 +65,7 @@ namespace quadrature
             }
         }
 
-        return Q[n - 1][n - 1];
+        return Q[iter][iter];
     }
 
 }    // namespace quadrature
