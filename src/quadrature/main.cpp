@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
     if(variant == 1)
     {
-        cout << "integrate with trapecoidal\n";
+        cout << "integrate with trapecoidal sum\n";
         TrapecoidalSum sum { a, b, y };
         execute(&sum);
     }
